@@ -1,0 +1,15 @@
+{
+	"name": "tui-toolkit",
+	"version": "0.1.0",
+	"description": "A set of functions for creating visually appealing TUI (Text User Interface) interfaces in BASH - includes dynamic tables, styled headers, ANSI colors, and message formatting",
+	"global": false,
+	"scripts": [
+		"src/index.sh",
+		"src/ansi.sh",
+		"src/messages.sh",
+		"src/table.sh",
+		"src/header.sh"
+	],
+	"dependencies": {}
+}
+
