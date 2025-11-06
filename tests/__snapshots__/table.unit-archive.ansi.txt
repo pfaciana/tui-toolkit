@@ -1,0 +1,31 @@
+--- Testing strip_ansi ---
+✓ Plain text
+✓ Red text
+✓ Bold cyan text
+
+--- Testing visible_length ---
+✓ Plain text length
+✓ Colored text length
+
+--- Testing parse_alignment ---
+✓ Left align (default)
+✓ Left align (explicit)
+✓ Right align
+✓ Center align
+
+--- Testing strip_ansi ---
+✓ Plain text
+✓ Red text
+✓ Bold cyan text
+
+--- Testing visible_length ---
+✓ Plain text length
+✓ Colored text length
+
+--- Testing parse_alignment ---
+✓ Left align (default)
+✓ Left align (explicit)
+✓ Right align
+✓ Center align
+
+Tests passed: 18/18

@@ -1,12 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [[ -n "${_MESSAGES_LOADED:-}" ]]; then
     return 0
 fi
 _MESSAGES_LOADED=1
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/ansi.sh"
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/ansi.sh"
 
 # usage: echo "A$(spaces 5)B"
 spaces() {
@@ -34,8 +33,8 @@ _parse_args() {
     done
 
     result[text]="${pos[0]}"
-    result[icon]="${icon:-${pos[1]}}"
-    result[status]="${status:-${pos[1]}}"
+    result[icon]="${icon:-${pos[1]:-}}"
+    result[status]="${status:-${pos[1]:-}}"
     result[padding]=$(spaces ${padding})
 }
 

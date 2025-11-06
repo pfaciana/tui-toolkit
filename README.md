@@ -1,6 +1,6 @@
 # TUI Toolkit
 
-Common helper functions for creating visually appealing TUI (Text User Interface) interfaces in BASH. This toolkit includes dynamic tables, styled headers, ANSI colors, and message formatting. Designed to be used both as a standalone library and as a bpkg package.
+A comprehensive BASH library for creating professional terminal user interfaces. Includes dynamic tables with auto-resizing columns, styled headers, color-coded messages, and ANSI formatting utilities. Available as both a standalone library and a bpkg package.
 
 ## Installation
 
@@ -10,7 +10,7 @@ Clone or download this repository and source the helpers you need:
 
 ```bash
 # Load all helpers at once
-source ./src/index.sh
+source ./index.sh
 
 # Or load specific helpers
 source ./src/table.sh
@@ -25,21 +25,59 @@ Install via bpkg for use across multiple projects:
 bpkg install pfaciana/tui-toolkit
 
 # Load all helpers
-source deps/tui-toolkit/src/index.sh
+source deps/tui-toolkit/index.sh
 
 # Or load specific helpers
 source deps/tui-toolkit/src/table.sh
 ```
 
-## Helpers Included
+## Development
+
+### Setup
+
+Initialize the development environment with a single command:
+
+```bash
+bpkg run init
+```
+
+This runs all setup tasks in parallel:
+- Installs the bashunit testing framework
+- Generates the package entry file (`index.sh`)
+- Creates the snapshot test runner (`test.sh`)
+
+### Individual Setup Commands
+
+```bash
+bpkg run install-bashunit      # Install bashunit testing framework
+bpkg run build-entry-file       # Generate package entry file
+bpkg run build-test-runner      # Create snapshot test runner
+```
+
+### Testing
+
+```bash
+bpkg run tests      # Run snapshot tests (tui-testkit)
+bpkg run bashunit   # Run unit tests (bashunit)
+```
+
+## Components
 
 ### Table Helper
 
-Dynamic table builder for building tables that auto-resize as data is added incrementally.
+Dynamic table builder with automatic column resizing, alignment control, and ANSI color support.
 
 ### Header Helper
 
-Styled header/banner generator for creating section headers and titles in terminal output.
+Styled section headers and banners with customizable borders, padding, and colors.
+
+### Messages Helper
+
+Status and process messages with color-coded backgrounds and icon indicators.
+
+### ANSI Helper
+
+Color codes, text formatting constants, and icon definitions for terminal styling.
 
 **Features:**
 
@@ -60,13 +98,13 @@ All examples below assume you've sourced the table helper using one of these met
 
 ```bash
 # Method 1: Load all helpers (includes table.sh)
-source ./src/index.sh
+source ./index.sh
 
 # Method 2: Load only table helper
 source ./src/table.sh
 
 # Method 3: After bpkg install - load all
-source deps/tui-toolkit/src/index.sh
+source deps/tui-toolkit/index.sh
 
 # Method 4: After bpkg install - load only table
 source deps/tui-toolkit/src/table.sh
@@ -179,13 +217,15 @@ print_header -c "Centered Title"
 
 ### Closed Box
 
-By default, headers are "open" on the right side. Use `-|` to close the box:
+By default, headers are "open" on the right side. Use `-d` or `--closed` to close the box:
 
 ```bash
-print_header -\| "Closed Box Header"
+print_header -d "Closed Box Header"
+# or
+print_header --closed "Closed Box Header"
 ```
 
-**Note:** If the text is too long for the interior width, the trailing border will not be displayed, even with the `-|` flag.
+**Note:** If the text is too long for the interior width, the trailing border will not be displayed, even with the `-d` flag.
 
 ### Custom Width
 
@@ -228,14 +268,74 @@ print_header -b $'\033[0;35m\033[1m' -t $'\033[0;36m\033[1m' "Purple Border, Cya
 ### All Options Combined
 
 ```bash
-print_header -c -\| -p 2 -w 70 -b $'\033[0;33m\033[1m' -t $'\033[0;32m\033[1m' "Full Featured"
+print_header -c -d -p 2 -w 70 -b $'\033[0;33m\033[1m' -t $'\033[0;32m\033[1m' "Full Featured"
+```
+
+## Messages Helper Usage
+
+Provides formatted output functions for status messages, icons, and process indicators.
+
+### Status Messages
+
+Status messages display with colored backgrounds and bold labels:
+
+```bash
+source ./src/messages.sh
+
+print_pass "All tests passed successfully"
+print_fail "Test suite failed with errors"
+print_warn "Deprecated function will be removed"
+print_inform "Server is running on port 3000"
+```
+
+### Icon Messages
+
+Icon messages use symbols with colored text:
+
+```bash
+print_success "Operation completed"
+print_error "Failed to connect to database"
+print_warning "Low disk space detected"
+print_info "Configuration loaded from file"
+```
+
+### Process Indicators
+
+Track workflow progress with process messages:
+
+```bash
+print_step "Starting application initialization"
+print_progress "Loading configuration files"
+print_finish "Application ready to serve requests"
+print_log "Server listening on port 3000"
+```
+
+### Customization
+
+```bash
+# Custom status labels
+print_pass "Database migration" "MIGRATED"
+print_fail "Connection test" "TIMEOUT"
+
+# Custom icons
+print_success "Deployment complete" "🚀"
+print_step "Building project" "🔨"
+
+# Suppress trailing newline
+print_progress -n "Processing..."
+sleep 2
+print_success " Done!"
+
+# Adjust spacing (default: 2 spaces)
+print_pass -p 4 "Extra spacing"
+print_inform -p 0 "No spacing"
 ```
 
 ## Header Helper API Reference
 
 ### print_header
 
-Create a styled header box with customizable options.
+Creates a styled header box with customizable borders, padding, and colors.
 
 **Syntax:**
 ```bash
@@ -243,16 +343,16 @@ print_header [OPTIONS] "Title Text"
 ```
 
 **Options:**
-- `-w, --width N` - Set box width (default: 80)
-- `-p, --padding N` - Set padding (default: 1)
+- `-w, --width N` - Box width (default: 80)
+- `-p, --padding N` - Padding (default: 1)
   - Horizontal: N spaces left/right
   - Vertical: max(0, N-1) rows top/bottom
 - `-c, --center` - Center-align text (default: left-aligned)
-- `-|, --closed` - Close the box with trailing border (default: open)
+- `-d, --closed` - Close box with trailing border (default: open)
   - Automatically disabled if text exceeds interior width
 - `-f, --fit` - Auto-fit width to content
-- `-b, --border PREFIX` - Border color prefix (default: bold cyan)
-- `-t, --cell PREFIX` - Text color prefix (default: bold white)
+- `-b, --border PREFIX` - Border color ANSI prefix (default: bold cyan)
+- `-t, --cell PREFIX` - Text color ANSI prefix (default: bold white)
 
 **Examples:**
 ```bash
@@ -263,26 +363,283 @@ print_header "Section 1"
 print_header -c -w 60 "Centered Title"
 
 # Fit to content with closed box
-print_header -f -\| "Perfect Fit"
+print_header -f -d "Perfect Fit"
 
 # Custom colors and padding
 print_header -p 2 -b $'\033[0;33m' -t $'\033[0;32m' "Styled Header"
 ```
 
-## API Reference
+## Messages Helper API Reference
+
+### Status Messages
+
+Status messages display with colored backgrounds and bold labels.
+
+#### print_pass
+
+Print a PASS status message with green background.
+
+**Syntax:**
+```bash
+print_pass [OPTIONS] "message" [status]
+```
+
+**Options:**
+- `-n` - Suppress trailing newline
+- `-s, --status STATUS` - Custom status label (default: "PASS")
+- `-p, --padding N` - Spaces between status and message (default: 2)
+
+**Example:**
+```bash
+print_pass "All tests passed"
+print_pass "Database migration" "MIGRATED"
+print_pass -n "Processing..."
+```
+
+#### print_fail
+
+Print a FAIL status message with red background.
+
+**Syntax:**
+```bash
+print_fail [OPTIONS] "message" [status]
+```
+
+**Options:**
+- `-n` - Suppress trailing newline
+- `-s, --status STATUS` - Custom status label (default: "FAIL")
+- `-p, --padding N` - Spaces between status and message (default: 2)
+
+#### print_warn
+
+Print a WARN status message with yellow background.
+
+**Syntax:**
+```bash
+print_warn [OPTIONS] "message" [status]
+```
+
+**Options:**
+- `-n` - Suppress trailing newline
+- `-s, --status STATUS` - Custom status label (default: "WARN")
+- `-p, --padding N` - Spaces between status and message (default: 2)
+
+#### print_inform
+
+Print an INFO status message with cyan background.
+
+**Syntax:**
+```bash
+print_inform [OPTIONS] "message" [status]
+```
+
+**Options:**
+- `-n` - Suppress trailing newline
+- `-s, --status STATUS` - Custom status label (default: "INFO")
+- `-p, --padding N` - Spaces between status and message (default: 2)
+
+### Icon Messages
+
+Icon messages use symbols with colored text.
+
+#### print_success
+
+Print a success message with ✓ icon (green).
+
+**Syntax:**
+```bash
+print_success [OPTIONS] "message" [icon]
+```
+
+**Options:**
+- `-n` - Suppress trailing newline
+- `-i, --icon ICON` - Custom icon (default: "✓")
+
+#### print_error
+
+Print an error message with ✗ icon (red).
+
+**Syntax:**
+```bash
+print_error [OPTIONS] "message" [icon]
+```
+
+**Options:**
+- `-n` - Suppress trailing newline
+- `-i, --icon ICON` - Custom icon (default: "✗")
+
+#### print_warning
+
+Print a warning message with ⚠ icon (yellow).
+
+**Syntax:**
+```bash
+print_warning [OPTIONS] "message" [icon]
+```
+
+**Options:**
+- `-n` - Suppress trailing newline
+- `-i, --icon ICON` - Custom icon (default: "⚠")
+
+#### print_info
+
+Print an info message with ℹ icon (cyan).
+
+**Syntax:**
+```bash
+print_info [OPTIONS] "message" [icon]
+```
+
+**Options:**
+- `-n` - Suppress trailing newline
+- `-i, --icon ICON` - Custom icon (default: "ℹ")
+
+### Process Indicators
+
+Process indicators track workflow progress.
+
+#### print_step
+
+Print a step message with 📍 icon (cyan).
+
+**Syntax:**
+```bash
+print_step [OPTIONS] "message" [icon]
+```
+
+**Options:**
+- `-n` - Suppress trailing newline
+- `-i, --icon ICON` - Custom icon (default: "📍")
+
+#### print_progress
+
+Print a progress message with ⏳ icon (yellow).
+
+**Syntax:**
+```bash
+print_progress [OPTIONS] "message" [icon]
+```
+
+**Options:**
+- `-n` - Suppress trailing newline
+- `-i, --icon ICON` - Custom icon (default: "⏳")
+
+#### print_finish
+
+Print a finish message with 🏁 icon (green).
+
+**Syntax:**
+```bash
+print_finish [OPTIONS] "message" [icon]
+```
+
+**Options:**
+- `-n` - Suppress trailing newline
+- `-i, --icon ICON` - Custom icon (default: "🏁")
+
+#### print_log
+
+Print a log message with ➤ icon.
+
+**Syntax:**
+```bash
+print_log [OPTIONS] "message" [icon]
+```
+
+**Options:**
+- `-n` - Suppress trailing newline
+- `-i, --icon ICON` - Custom icon (default: "➤")
+
+### Utility Functions
+
+#### spaces
+
+Generate a string of N spaces.
+
+**Syntax:**
+```bash
+spaces N
+```
+
+**Parameters:**
+- `N` - Number of spaces to generate
+
+**Example:**
+```bash
+echo "A$(spaces 5)B"  # Output: "A     B"
+```
+
+## ANSI Helper API Reference
+
+Provides color codes, text formatting, and icon constants for terminal styling.
+
+### Foreground Colors
+
+- `WH` - White (`\033[0;37m`)
+- `GR` - Gray (`\033[0;90m`)
+- `BK` - Black (`\033[0;30m`)
+- `RD` - Red (`\033[0;31m`)
+- `GN` - Green (`\033[0;32m`)
+- `YL` - Yellow (`\033[0;33m`)
+- `BL` - Blue (`\033[0;34m`)
+- `MG` - Magenta (`\033[0;35m`)
+- `CY` - Cyan (`\033[0;36m`)
+
+### Background Colors
+
+- `BG_WH` - White background (`\033[47m`)
+- `BG_GR` - Gray background (`\033[100m`)
+- `BG_BK` - Black background (`\033[40m`)
+- `BG_RD` - Red background (`\033[41m`)
+- `BG_GN` - Green background (`\033[42m`)
+- `BG_YL` - Yellow background (`\033[43m`)
+- `BG_BL` - Blue background (`\033[44m`)
+- `BG_MG` - Magenta background (`\033[45m`)
+- `BG_CY` - Cyan background (`\033[46m`)
+
+### Text Formatting
+
+- `NC` - No color / Reset (`\033[0m`)
+- `BOLD` - Bold text (`\033[1m`)
+- `DIM` - Dim text (`\033[2m`)
+
+### Icons
+
+- `ICON_SUCCESS` - ✓
+- `ICON_ERROR` - ✗
+- `ICON_INFO` - ℹ
+- `ICON_WARNING` - ⚠
+- `ICON_PROGRESS` - ⏳
+- `ICON_STEP` - 📍
+- `ICON_FINISHED` - 🏁
+
+**Example:**
+```bash
+source ./src/ansi.sh
+
+echo "${BOLD}${GN}Success!${NC}"
+echo "${BG_RD}${WH} ERROR ${NC} Something went wrong"
+echo "${ICON_SUCCESS} Task completed"
+```
+
+## Table Helper API Reference
 
 ### print_table_start
 
-Initialize a new table with optional configuration.
+```bash
+print_table_start [OPTIONS]
+```
 
-**Parameters:**
-- `-m|--margin <num>` - Margin space with border styling (default: 1)
-- `-p|--padding <num>` - Padding space with cell styling (default: 0)
-- `-c|--center` - Center align header row (default: false)
-- `-b|--border <prefix>` - ANSI prefix for border characters and margin (default: "")
-- `-t|--cell <prefix>` - ANSI prefix for cell content and padding (default: "")
-- `-w|--max-width <num>` - Maximum column width in characters (default: 25)
-- `-e|--ellipsis <str>` - Ellipsis string for truncated content (default: "…")
+Initializes a new table with optional configuration.
+
+**Options:**
+- `-m, --margin N` - Margin space with border styling (default: 1)
+- `-p, --padding N` - Padding space with cell styling (default: 0)
+- `-c, --center` - Center-align header row (default: false)
+- `-b, --border PREFIX` - ANSI prefix for borders and margin (default: "")
+- `-t, --cell PREFIX` - ANSI prefix for cell content and padding (default: "")
+- `-w, --max-width N` - Maximum column width (default: 25)
+- `-e, --ellipsis STR` - Ellipsis for truncated content (default: "…")
 
 **Example:**
 ```bash
@@ -293,15 +650,16 @@ print_table_start --margin 1 --padding 1 --center \
 
 ### print_table_headers
 
-Define column headers and alignment.
+```bash
+print_table_headers "Column1" "Column2" ...
+```
 
-**Parameters:**
-- `$@` - Each argument is a column header
+Defines column headers and alignment. Can be called multiple times to create section headers.
 
 **Alignment markers:**
-- `:Header` - Left aligned column (default)
-- `Header:` - Right aligned column
-- `:Header:` - Center aligned column
+- `:Header` - Left-aligned (default)
+- `Header:` - Right-aligned
+- `:Header:` - Center-aligned
 
 **Multiple headers:**
 - Can be called multiple times within the same table to create section headers
@@ -357,11 +715,15 @@ print_table_divider
 print_table_row "Charlie" "35" "SF"
 ```
 
-**Note:** The divider will be redrawn correctly if the table needs to resize.
+Inserts a horizontal divider row. Preserved during table redraws.
 
 ### print_table_end
 
-Print the bottom border of the table.
+```bash
+print_table_end
+```
+
+Prints the bottom border and completes the table.
 
 ### print_table_message
 
@@ -369,6 +731,10 @@ Print a temporary message that will be erased on the next `print_table_*` call.
 
 **Parameters:**
 - `$1` - Message to print
+
+```bash
+print_table_message "Loading..."
+```
 
 **Behavior:**
 - Messages are temporary and only persist until the next `print_table_*` function is called
@@ -535,80 +901,6 @@ Several guard mechanisms prevent issues:
 - `TABLE_MESSAGE_LINES`: Tracks temporary messages separately from table lines
 - Alignment parsing only in headers: Prevents unintended alignment changes
 
-### Global Variables and Cleanup
-
-The table helper uses global variables (prefixed with `_TABLE_`) to maintain state across function calls. This is intentional and necessary for the API to work.
-
-**Variables used:**
-- `_TABLE_DATA`, `_TABLE_WIDTHS`, `_TABLE_ALIGNMENTS`
-- `_TABLE_MARGIN`, `_TABLE_PADDING`, `_TABLE_CENTER_HEADERS`
-- `_TABLE_BORDER_PREFIX`, `_TABLE_CELL_PREFIX`
-- `_TABLE_MAX_WIDTH`, `_TABLE_ELLIPSIS`
-- `_TABLE_HEADER_COUNT`, `_TABLE_LINES_PRINTED`
-- `_TABLE_IN_REDRAW`, `_TABLE_MESSAGE_LINES`
-
-**Optional cleanup:**
-
-If you need to clean up these variables after using the table (e.g., in a long-running script), use:
-
-```bash
-print_table_cleanup  # Removes all _TABLE_* variables
-```
-
-This is optional and rarely needed, as these variables are reset by `print_table_start`.
-
-## Changelog
-
-### Recent Changes
-
-**Flag Naming Refactor** (Latest)
-- Renamed `--divider` to `--border` (clearer naming for table frame/structure)
-- Changed `--cell` short option from `-b` to `-t` (to avoid conflict with `--border`)
-- Updated all internal variables: `TABLE_DIVIDER_PREFIX` → `TABLE_BORDER_PREFIX`
-- Breaking change: Use `--border` instead of `--divider`, `-t` instead of `-b` for cell prefix
-- Rationale: "Border" refers to table structure, "Divider" refers to horizontal separator rows
-
-**Margin and Padding Separation**
-- Split padding into margin (border-styled) and padding (cell-styled)
-- Added `--margin` flag (default: 1)
-- Changed `--padding` default from 1 to 0
-- Breaking change: Old `--padding 1` = New `--margin 1 --padding 0`
-
-**Alignment Parsing Cleanup**
-- Removed alignment parsing from `print_table_row`
-- Alignment markers (`:`) now only work in headers
-- Row data treats `:` as literal characters
-- Simplified code and improved performance
-
-**Multiple Headers Support**
-- `print_table_headers` can be called multiple times
-- Automatic dividers above and below mid-table headers
-- Column alignments reset with each new header
-- Preserved during dynamic redraws
-
-**Divider Rows**
-- Added `print_table_divider` function
-- Dividers preserved during table redraws
-- Can be placed anywhere between rows
-
-**Temporary Messages**
-- Added `print_table_message` function
-- Messages auto-erase on next table operation
-- Prevents artifacts during redraws
-- Replaces need for `echo` between table operations
-
-**ANSI Background Preservation**
-- Cell ANSI codes now preserve `--cell` prefix backgrounds
-- Automatic wrapping of reset sequences
-- Maintains background colors even when cell content has foreground colors
-
-**Bug Fixes**
-- Fixed padding on both sides (including alignment side)
-- Added support for padding/margin = 0
-- Fixed divider prefix application to margin spaces
-- Fixed nested redraw prevention
-- Fixed alignment reset with multiple headers
-
 ## Adding New Helpers
 
 This project is designed to hold multiple helper scripts. To add a new helper:
@@ -616,7 +908,7 @@ This project is designed to hold multiple helper scripts. To add a new helper:
 1. **Create your helper script** in `src/` with the standard guard pattern:
    ```bash
    # Example: src/string.sh
-   #!/bin/bash
+   #!/usr/bin/env bash
 
    # Standard guard pattern - prevents double-sourcing
    if [[ -n "${_STRING_LOADED:-}" ]]; then
@@ -668,7 +960,7 @@ This project is designed to hold multiple helper scripts. To add a new helper:
 **All helper files in `src/` (except `index.sh`) must use the sentinel guard pattern:**
 
 ```bash
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [[ -n "${_FILENAME_LOADED:-}" ]]; then
     return 0
@@ -691,7 +983,108 @@ _FILENAME_LOADED=1
 
 The `src/index.sh` file automatically sources all `.sh` files in the `src/` directory, so new helpers are immediately available when using the index approach.
 
-## License
+### Writing Tests
 
-MIT License - Feel free to use and modify as needed.
+This project uses a dual-compatible testing approach that works with both **tui-testkit** snapshot testing and **TypedDevs bashunit** snapshot testing.
 
+All snapshot test files must follow these requirements to ensure compatibility:
+
+#### 1. Source the bashunit-compatible adapter
+
+Every test file must include this line at the top:
+
+```bash
+. "${BPKG_DEPS:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../deps" && pwd)}/tui-testkit/src/bashunit-compatible.sh"
+```
+#### 2. Wrap snapshot assertions with tee redirection
+
+**CRITICAL:** All snapshot assertions must use this pattern:
+
+```bash
+assert_match_snapshot "$({
+    # Your test code here
+} | tee >(cat >&2))"
+```
+
+**Why this is required:**
+- Enables real-time output streaming during test execution
+- Works with `bpkg run tests -d` (debug mode)
+- Allows direct execution for debugging: `./tests/your.test.sh`
+
+#### 3. End file with run_tests call
+
+Every test file must end with some variation of `run_tests` call (custom args are optional):
+
+```bash
+run_tests -h "$(print_header -b $'\033[0;31m\033[1m' -t $'\033[0;33m\033[1m' "{name}")\n"
+```
+
+Or simpler:
+
+```bash
+run_tests -h "\n\n➤➤➤  {name}"
+```
+
+The `-h` flag specifies the header template. `{name}` is replaced with the test file name.
+
+#### Complete Test File Example
+
+```bash
+#!/usr/bin/env bash
+
+# Source your helper functions
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../src/table.sh"
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../src/header.sh"
+
+# Source the bashunit-compatible adapter (REQUIRED)
+. "${BPKG_DEPS:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../deps" && pwd)}/tui-testkit/src/bashunit-compatible.sh"
+
+function test_basic_table() {
+    set_test_title "Basic table with auto-sizing columns"
+
+    # CRITICAL: Wrap with tee redirection
+    assert_match_snapshot "$({
+        print_table_start
+        print_table_headers "Name" "Age" "City"
+        print_table_row "Alice" "25" "NYC"
+        print_table_row "Bob" "30" "LA"
+        print_table_end
+    } | tee >(cat >&2))"
+}
+
+function test_centered_headers() {
+    set_test_title "Centered headers"
+
+    assert_match_snapshot "$({
+        print_table_start --center
+        print_table_headers "C1" "C2" "C3"
+        print_table_row "A" "B" "C"
+        print_table_end
+    } | tee >(cat >&2))"
+}
+
+# REQUIRED: Call run_tests at the end
+run_tests -h "$(print_header -b $'\033[0;31m\033[1m' -t $'\033[0;33m\033[1m' "{name}")\n"
+```
+
+### Running Tests
+
+```bash
+# Run all snapshot tests
+bpkg run tests
+
+# Run with debug output (shows real-time output)
+bpkg run tests -d
+
+# Run specific test file
+bpkg run tests -i table.base
+
+# Update snapshots
+bpkg run tests -u
+
+# Run unit tests (bashunit)
+bpkg run bashunit
+
+# Run a single test file directly for debugging
+./tests/table.base.test.sh
+```

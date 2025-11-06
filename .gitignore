@@ -1,3 +1,7 @@
+# Project build files
+/test.sh
+
+# IDE & Editor Files
 .archive
 .idea
 .obsidian

@@ -1,12 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [[ -n "${_HEADER_LOADED:-}" ]]; then
     return 0
 fi
 _HEADER_LOADED=1
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/ansi.sh"
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/ansi.sh"
 
 print_header() {
     local title=""
@@ -65,8 +64,8 @@ print_header() {
 
     # Create empty padding line
     local padding_line="${border_prefix}║${NC}"
-    for ((i=0; i<box_width; i++)); do padding_line+=" "; done
     if [[ "$closed" == "true" && "$can_close" == "true" ]]; then
+        for ((i=0; i<box_width; i++)); do padding_line+=" "; done
         padding_line+="${border_prefix}║${NC}"
     fi
 
@@ -81,36 +80,38 @@ print_header() {
         local text_padding=$(( (interior_width - title_len) / 2 ))
         for ((i=0; i<text_padding; i++)); do title_line+=" "; done
         title_line+="${cell_prefix}${title}${NC}"
-        for ((i=0; i<interior_width - title_len - text_padding; i++)); do title_line+=" "; done
+        if [[ "$closed" == "true" && "$can_close" == "true" ]]; then
+            for ((i=0; i<interior_width - title_len - text_padding; i++)); do title_line+=" "; done
+        fi
     else
         # Left aligned
         title_line+="${cell_prefix}${title}${NC}"
-        for ((i=0; i<interior_width - title_len; i++)); do title_line+=" "; done
+        if [[ "$closed" == "true" && "$can_close" == "true" ]]; then
+            for ((i=0; i<interior_width - title_len; i++)); do title_line+=" "; done
+        fi
     fi
 
-    # Add right padding
-    for ((i=0; i<lr_padding; i++)); do title_line+=" "; done
-
-    # Add closing border if requested and possible
+    # Add right padding and closing border if requested and possible
     if [[ "$closed" == "true" && "$can_close" == "true" ]]; then
+        for ((i=0; i<lr_padding; i++)); do title_line+=" "; done
         title_line+="${border_prefix}║${NC}"
     fi
 
     # Print the header
-    echo ""
-    echo "$top_border"
+    printf '\n'
+    printf '%s\n' "$top_border"
 
     # Print top padding rows
     for ((i=0; i<tb_padding; i++)); do
-        echo "$padding_line"
+        printf '%s\n' "$padding_line"
     done
 
-    echo "$title_line"
+    printf '%s\n' "$title_line"
 
     # Print bottom padding rows
     for ((i=0; i<tb_padding; i++)); do
-        echo "$padding_line"
+        printf '%s\n' "$padding_line"
     done
 
-    echo "$bottom_border"
+    printf '%s\n' "$bottom_border"
 }

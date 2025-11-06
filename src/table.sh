@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [[ -n "${_TABLE_LOADED:-}" ]]; then
     return 0
