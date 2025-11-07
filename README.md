@@ -964,7 +964,7 @@ Output:
 │ Product │ Price │ Stock │  ← Second header
 ├─────────┼───────┼───────┤  ← Divider below
 │ Widget  │ $10   │ 100   │
-└─────────┴─────────┴───────┘
+└─────────┴───────┴───────┘
 ```
 
 **Behavior:**
