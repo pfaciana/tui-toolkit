@@ -77,7 +77,7 @@ Status and process messages with color-coded backgrounds and icon indicators.
 
 ### ANSI Helper
 
-Color codes, text formatting constants, and icon definitions for terminal styling.
+Color codes, text formatting constants, cursor movement utilities, and icon definitions for terminal styling.
 
 **Features:**
 
@@ -309,6 +309,8 @@ print_progress "Loading configuration files"
 print_finish "Application ready to serve requests"
 print_log "Server listening on port 3000"
 ```
+
+**Tip:** For long-running operations, combine process messages with cursor movement to create ephemeral status updates. See [Best Practices: Ephemeral Messages](#best-practices-ephemeral-messages) in the ANSI Helper section.
 
 ### Customization
 
@@ -571,12 +573,11 @@ echo "A$(spaces 5)B"  # Output: "A     B"
 
 ## ANSI Helper API Reference
 
-Provides color codes, text formatting, and icon constants for terminal styling.
+Provides color codes, text formatting, cursor movement, and icon constants for terminal styling.
 
 ### Foreground Colors
 
-- `WH` - White (`\033[0;37m`)
-- `GR` - Gray (`\033[0;90m`)
+Standard colors:
 - `BK` - Black (`\033[0;30m`)
 - `RD` - Red (`\033[0;31m`)
 - `GN` - Green (`\033[0;32m`)
@@ -584,11 +585,22 @@ Provides color codes, text formatting, and icon constants for terminal styling.
 - `BL` - Blue (`\033[0;34m`)
 - `MG` - Magenta (`\033[0;35m`)
 - `CY` - Cyan (`\033[0;36m`)
+- `WH` - White (`\033[0;37m`)
+- `GR` - Gray (`\033[0;90m`)
+
+Bright colors:
+- `BRT_BK` - Bright Black (`\033[90m`)
+- `BRT_RD` - Bright Red (`\033[91m`)
+- `BRT_GN` - Bright Green (`\033[92m`)
+- `BRT_YL` - Bright Yellow (`\033[93m`)
+- `BRT_BL` - Bright Blue (`\033[94m`)
+- `BRT_MG` - Bright Magenta (`\033[95m`)
+- `BRT_CY` - Bright Cyan (`\033[96m`)
+- `BRT_WH` - Bright White (`\033[97m`)
 
 ### Background Colors
 
-- `BG_WH` - White background (`\033[47m`)
-- `BG_GR` - Gray background (`\033[100m`)
+Standard backgrounds:
 - `BG_BK` - Black background (`\033[40m`)
 - `BG_RD` - Red background (`\033[41m`)
 - `BG_GN` - Green background (`\033[42m`)
@@ -596,12 +608,106 @@ Provides color codes, text formatting, and icon constants for terminal styling.
 - `BG_BL` - Blue background (`\033[44m`)
 - `BG_MG` - Magenta background (`\033[45m`)
 - `BG_CY` - Cyan background (`\033[46m`)
+- `BG_WH` - White background (`\033[47m`)
+- `BG_GR` - Gray background (`\033[100m`)
+
+Bright backgrounds:
+- `BG_BRT_BK` - Bright Black background (`\033[100m`)
+- `BG_BRT_RD` - Bright Red background (`\033[101m`)
+- `BG_BRT_GN` - Bright Green background (`\033[102m`)
+- `BG_BRT_YL` - Bright Yellow background (`\033[103m`)
+- `BG_BRT_BL` - Bright Blue background (`\033[104m`)
+- `BG_BRT_MG` - Bright Magenta background (`\033[105m`)
+- `BG_BRT_CY` - Bright Cyan background (`\033[106m`)
+- `BG_BRT_WH` - Bright White background (`\033[107m`)
 
 ### Text Formatting
 
+Basic formatting:
 - `NC` - No color / Reset (`\033[0m`)
 - `BOLD` - Bold text (`\033[1m`)
-- `DIM` - Dim text (`\033[2m`)
+- `DIM` - Dim/Faint text (`\033[2m`)
+- `ITALIC` - Italic text (`\033[3m`)
+- `UNDERLINE` - Underlined text (`\033[4m`)
+- `BLINK` - Slow blink (`\033[5m`)
+- `SWAP` - Reverse/Inverse video (`\033[7m`)
+- `STRIKE` - Strikethrough text (`\033[9m`)
+
+Reset formatting:
+- `NO_BOLD` - Normal intensity (`\033[22m`)
+- `NO_DIM` - Normal intensity (`\033[22m`)
+- `NO_ITALIC` - Not italic (`\033[23m`)
+- `NO_UNDERLINE` - Not underlined (`\033[24m`)
+- `NO_BLINK` - Not blinking (`\033[25m`)
+- `NO_SWAP` - Not reversed (`\033[27m`)
+- `NO_STRIKE` - Not strikethrough (`\033[29m`)
+
+### Cursor Movement Functions
+
+#### delete_lines
+
+Delete the previous N lines as if they were never printed.
+
+**Syntax:**
+```bash
+delete_lines N
+```
+
+**Parameters:**
+- `N > 0` - Delete N lines above the cursor
+- `N < 0` - Delete |N| lines below the cursor
+- `N = 0` - Clear the current line
+
+**Example:**
+```bash
+echo "Line 1"
+echo "Line 2"
+echo "Line 3"
+delete_lines 2  # Removes "Line 2" and "Line 3"
+```
+
+#### delete_line
+
+Delete the previous line (alias for `delete_lines 1`).
+
+**Syntax:**
+```bash
+delete_line
+```
+
+**Example:**
+```bash
+echo "This will be deleted"
+delete_line
+echo "This remains"
+```
+
+**Common use case - Ephemeral status messages:**
+```bash
+source ./src/messages.sh
+
+echo "Starting process..."
+perform_long_task
+delete_line  # Remove the temporary message
+echo "Process complete!"
+```
+
+#### clear_current_line
+
+Clear the current line (alias for `delete_lines 0`).
+
+**Syntax:**
+```bash
+clear_current_line
+```
+
+**Example:**
+```bash
+echo -n "Loading..."
+sleep 1
+clear_current_line
+echo "Done!"
+```
 
 ### Icons
 
@@ -613,7 +719,9 @@ Provides color codes, text formatting, and icon constants for terminal styling.
 - `ICON_STEP` - 📍
 - `ICON_FINISHED` - 🏁
 
-**Example:**
+### Examples
+
+**Basic colors:**
 ```bash
 source ./src/ansi.sh
 
@@ -621,6 +729,91 @@ echo "${BOLD}${GN}Success!${NC}"
 echo "${BG_RD}${WH} ERROR ${NC} Something went wrong"
 echo "${ICON_SUCCESS} Task completed"
 ```
+
+**Bright colors:**
+```bash
+echo "${BRT_GN}Bright green text${NC}"
+echo "${BG_BRT_BL}${BRT_WH}Bright blue background${NC}"
+```
+
+**Text formatting:**
+```bash
+echo "${ITALIC}Italic text${NO_ITALIC}"
+echo "${UNDERLINE}Underlined text${NO_UNDERLINE}"
+echo "${STRIKE}Strikethrough text${NO_STRIKE}"
+```
+
+**Cursor movement:**
+```bash
+echo "Processing..."
+sleep 1
+delete_line
+echo "Complete!"
+```
+
+### Best Practices: Ephemeral Messages
+
+When working with long-running tasks, use ephemeral messages to provide real-time feedback without cluttering the terminal output. The pattern is:
+
+1. Print a temporary status message (step, progress, or any message)
+2. Perform the long-running operation
+3. Use `delete_line` or `delete_lines` to clean up the temporary message
+4. Print the final result
+
+**Example with progress messages:**
+```bash
+source ./src/ansi.sh
+source ./src/messages.sh
+
+# Show ephemeral progress message
+print_progress "Downloading files..."
+download_large_file
+delete_line  # Clean up the progress message
+
+# Show final result
+print_success "Download complete"
+```
+
+**Example with step messages:**
+```bash
+# Show ephemeral step
+print_step "Compiling source code..."
+run_compiler
+delete_line  # Remove the step message
+
+# Show final status
+print_pass "Build successful"
+```
+
+**Example with multiple ephemeral messages:**
+```bash
+print_step "Step 1: Initializing..."
+initialize_system
+delete_line
+
+print_step "Step 2: Processing data..."
+process_data
+delete_line
+
+print_step "Step 3: Finalizing..."
+finalize
+delete_line
+
+# Only the final message remains
+print_finish "All steps completed successfully"
+```
+
+**When to use ephemeral messages:**
+- Long-running operations where users need feedback that something is happening
+- Multi-step processes where intermediate steps don't need to persist
+- Progress updates that would clutter the output if left visible
+- Temporary status messages during initialization or setup
+
+**When NOT to use ephemeral messages:**
+- Important status information that users need to review later
+- Error messages or warnings that require attention
+- Audit trails or logs of completed actions
+- Final results or summaries
 
 ## Table Helper API Reference
 
@@ -828,7 +1021,14 @@ print_table_end
 
 ## Examples
 
-For complete working examples, see the test files in the repository (available after Phase 3 when testing is integrated).
+For complete working examples, see the test files in the `tests/` directory:
+
+- **ANSI Helper**: `tests/ansi.test.sh` - Tests for cursor movement functions (delete_lines, delete_line, clear_current_line)
+- **Header Helper**: `tests/header.test.sh` - Tests for styled headers with various configurations
+- **Messages Helper**: `tests/messages.*.test.sh` - Tests for status, icon, and process messages
+- **Table Helper**: `tests/table.*.test.sh` - Comprehensive tests for table features including alignment, colors, dividers, multi-headers, and more
+
+All tests include snapshot files in `tests/__snapshots__/` that show expected output.
 
 ## Implementation Details
 
