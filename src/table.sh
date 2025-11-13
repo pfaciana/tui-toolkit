@@ -160,7 +160,8 @@ print_divider() {
         fi
     done
     printf '%s\033[0m\n' "$right"
-    ((_TABLE_LINES_PRINTED++))
+    # || true needed: post-increment returns old value (0 on first call), which fails with set -e
+    ((_TABLE_LINES_PRINTED++)) || true
 }
 
 align_text() {
@@ -229,7 +230,8 @@ print_row_generic() {
         printf '%s│\033[0m' "$_TABLE_BORDER_PREFIX"
     done
     printf '\n'
-    ((_TABLE_LINES_PRINTED++))
+    # || true needed: post-increment returns old value (0 on first call), which fails with set -e
+    ((_TABLE_LINES_PRINTED++)) || true
 }
 
 print_header_row() {
@@ -275,7 +277,11 @@ redraw_table() {
     fi
 
     local row_start=$_TABLE_HEADER_COUNT
-    local row_count=$(((${#_TABLE_DATA[@]} - _TABLE_HEADER_COUNT) / ${#_TABLE_WIDTHS[@]}))
+    local row_count=0
+    # Guard against division by zero when _TABLE_WIDTHS is empty
+    if [[ ${#_TABLE_WIDTHS[@]} -gt 0 ]]; then
+        row_count=$(((${#_TABLE_DATA[@]} - _TABLE_HEADER_COUNT) / ${#_TABLE_WIDTHS[@]}))
+    fi
 
     for ((r=0; r<row_count; r++)); do
         local -a row_cells=()
