@@ -9,7 +9,6 @@ function test_basic_header() {
 	assert_match_snapshot "$({
 
 print_header "Welcome to My Application"
-sleep 2
 
 	} | tee >(cat >&2))"
 }

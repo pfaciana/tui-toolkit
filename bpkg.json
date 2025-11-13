@@ -1,6 +1,6 @@
 {
 	"name": "tui-toolkit",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"description": "A set of functions for creating visually appealing TUI (Terminal User Interface) interfaces in BASH - includes dynamic tables, styled headers, ANSI colors, and message formatting",
 	"global": false,
 	"files": [

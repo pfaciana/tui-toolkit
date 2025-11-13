@@ -3,114 +3,114 @@
 [0;31m[1m║[0m [0;33m[1mBasic color message functions[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-[0;37m[42m[1m PASS [0m  [0;32m[1mAll tests passed successfully[0m
-[0;37m[41m[1m FAIL [0m  [0;31m[1mTest suite failed with errors[0m
-[0;37m[43m[1m WARN [0m  [0;33m[1mDeprecated function will be removed[0m
-[0;37m[46m[1m INFO [0m  [0;36m[1mServer is running on port 3000[0m
+[37m[42m[1m PASS [0m  [32m[1mAll tests passed successfully[0m
+[37m[41m[1m FAIL [0m  [31m[1mTest suite failed with errors[0m
+[37m[43m[1m WARN [0m  [33m[1mDeprecated function will be removed[0m
+[37m[46m[1m INFO [0m  [36m[1mServer is running on port 3000[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mCustom status labels[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-[0;37m[42m[1m BUILD [0m  [0;32m[1mBuild completed[0m
-[0;37m[41m[1m ERROR [0m  [0;31m[1mConnection timeout[0m
-[0;37m[43m[1m ALERT [0m  [0;33m[1mMemory usage high[0m
-[0;37m[46m[1m NOTE [0m  [0;36m[1mNew version available[0m
+[37m[42m[1m BUILD [0m  [32m[1mBuild completed[0m
+[37m[41m[1m ERROR [0m  [31m[1mConnection timeout[0m
+[37m[43m[1m ALERT [0m  [33m[1mMemory usage high[0m
+[37m[46m[1m NOTE [0m  [36m[1mNew version available[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mLong messages[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-[0;37m[42m[1m PASS [0m  [0;32m[1mThis is a very long success message that demonstrates how the function handles extended text content with multiple words and detailed information[0m
-[0;37m[41m[1m FAIL [0m  [0;31m[1mThis is a very long failure message that demonstrates how the function handles extended text content with multiple words and detailed information[0m
-[0;37m[43m[1m WARN [0m  [0;33m[1mThis is a very long warning message that demonstrates how the function handles extended text content with multiple words and detailed information[0m
-[0;37m[46m[1m INFO [0m  [0;36m[1mThis is a very long informational message that demonstrates how the function handles extended text content with multiple words and detailed information[0m
+[37m[42m[1m PASS [0m  [32m[1mThis is a very long success message that demonstrates how the function handles extended text content with multiple words and detailed information[0m
+[37m[41m[1m FAIL [0m  [31m[1mThis is a very long failure message that demonstrates how the function handles extended text content with multiple words and detailed information[0m
+[37m[43m[1m WARN [0m  [33m[1mThis is a very long warning message that demonstrates how the function handles extended text content with multiple words and detailed information[0m
+[37m[46m[1m INFO [0m  [36m[1mThis is a very long informational message that demonstrates how the function handles extended text content with multiple words and detailed information[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mEmpty messages[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-[0;37m[42m[1m PASS [0m[0;32m[1m[0m
-[0;37m[41m[1m FAIL [0m[0;31m[1m[0m
-[0;37m[43m[1m WARN [0m[0;33m[1m[0m
-[0;37m[46m[1m INFO [0m[0;36m[1m[0m
+[37m[42m[1m PASS [0m[32m[1m[0m
+[37m[41m[1m FAIL [0m[31m[1m[0m
+[37m[43m[1m WARN [0m[33m[1m[0m
+[37m[46m[1m INFO [0m[36m[1m[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mMessages with special characters[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-[0;37m[42m[1m PASS [0m  [0;32m[1mTest: 100% complete! ✓[0m
-[0;37m[41m[1m FAIL [0m  [0;31m[1mError: File not found @ /path/to/file[0m
-[0;37m[43m[1m WARN [0m  [0;33m[1mWarning: Usage > 90% (critical)[0m
-[0;37m[46m[1m INFO [0m  [0;36m[1mInfo: User #123 logged in[0m
+[37m[42m[1m PASS [0m  [32m[1mTest: 100% complete! ✓[0m
+[37m[41m[1m FAIL [0m  [31m[1mError: File not found @ /path/to/file[0m
+[37m[43m[1m WARN [0m  [33m[1mWarning: Usage > 90% (critical)[0m
+[37m[46m[1m INFO [0m  [36m[1mInfo: User #123 logged in[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mMixed status labels (short and long)[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-[0;37m[42m[1m OK [0m  [0;32m[1mQuick test[0m
-[0;37m[41m[1m UNAUTHORIZED [0m  [0;31m[1mAuthentication failed[0m
-[0;37m[43m[1m ⚠  [0m  [0;33m[1mDisk space low[0m
-[0;37m[46m[1m PROCESSING [0m  [0;36m[1mProcessing...[0m
+[37m[42m[1m OK [0m  [32m[1mQuick test[0m
+[37m[41m[1m UNAUTHORIZED [0m  [31m[1mAuthentication failed[0m
+[37m[43m[1m ⚠  [0m  [33m[1mDisk space low[0m
+[37m[46m[1m PROCESSING [0m  [36m[1mProcessing...[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mConsecutive messages (no spacing)[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-[0;37m[42m[1m PASS [0m  [0;32m[1mStep 1 complete[0m
-[0;37m[42m[1m PASS [0m  [0;32m[1mStep 2 complete[0m
-[0;37m[42m[1m PASS [0m  [0;32m[1mStep 3 complete[0m
-[0;37m[41m[1m FAIL [0m  [0;31m[1mStep 4 failed[0m
-[0;37m[43m[1m WARN [0m  [0;33m[1mStep 5 skipped[0m
-[0;37m[46m[1m INFO [0m  [0;36m[1mStep 6 pending[0m
+[37m[42m[1m PASS [0m  [32m[1mStep 1 complete[0m
+[37m[42m[1m PASS [0m  [32m[1mStep 2 complete[0m
+[37m[42m[1m PASS [0m  [32m[1mStep 3 complete[0m
+[37m[41m[1m FAIL [0m  [31m[1mStep 4 failed[0m
+[37m[43m[1m WARN [0m  [33m[1mStep 5 skipped[0m
+[37m[46m[1m INFO [0m  [36m[1mStep 6 pending[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mAll four functions in sequence[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-[0;37m[42m[1m PASS [0m  [0;32m[1mDatabase connection established[0m
-[0;37m[41m[1m FAIL [0m  [0;31m[1mCache server unreachable[0m
-[0;37m[43m[1m WARN [0m  [0;33m[1mSSL certificate expires in 7 days[0m
-[0;37m[46m[1m INFO [0m  [0;36m[1mRunning in development mode[0m
+[37m[42m[1m PASS [0m  [32m[1mDatabase connection established[0m
+[37m[41m[1m FAIL [0m  [31m[1mCache server unreachable[0m
+[37m[43m[1m WARN [0m  [33m[1mSSL certificate expires in 7 days[0m
+[37m[46m[1m INFO [0m  [36m[1mRunning in development mode[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mUsing --status flag[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-[0;37m[42m[1m OK [0m  [0;32m[1mAll tests passed[0m
-[0;37m[41m[1m ERR [0m  [0;31m[1mTests failed[0m
-[0;37m[43m[1m ATTN [0m  [0;33m[1mSome warnings[0m
-[0;37m[46m[1m NOTE [0m  [0;36m[1mInformation[0m
+[37m[42m[1m OK [0m  [32m[1mAll tests passed[0m
+[37m[41m[1m ERR [0m  [31m[1mTests failed[0m
+[37m[43m[1m ATTN [0m  [33m[1mSome warnings[0m
+[37m[46m[1m NOTE [0m  [36m[1mInformation[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mCombining -n with --status[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-[0;37m[42m[1m YAY [0m  [0;32m[1mNo newline[0m <- same line
-[0;37m[41m[1m ERR [0m  [0;31m[1mError[0m <- same line
+[37m[42m[1m YAY [0m  [32m[1mNo newline[0m <- same line
+[37m[41m[1m ERR [0m  [31m[1mError[0m <- same line
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mFlag takes precedence over positional[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-[0;37m[42m[1m RIGHT [0m  [0;32m[1mMessage[0m
-[0;37m[41m[1m RIGHT [0m  [0;31m[1mMessage[0m
+[37m[42m[1m RIGHT [0m  [32m[1mMessage[0m
+[37m[41m[1m RIGHT [0m  [31m[1mMessage[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mUsing --padding flag[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-[0;37m[42m[1m PASS [0m   [0;32m[1mPASSED[0m
-[0;37m[41m[1m X [0m[0;31m[1mFAILED[0m
-[0;37m[46m[1m INFO [0m[0;36m[1m[0m
+[37m[42m[1m PASS [0m   [32m[1mPASSED[0m
+[37m[41m[1m X [0m[31m[1mFAILED[0m
+[37m[46m[1m INFO [0m[36m[1m[0m

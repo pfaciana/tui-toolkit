@@ -3,134 +3,134 @@
 [0;31m[1m║[0m [0;33m[1mBasic icon message functions[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m✓8[3C[0;32m[1mOperation completed successfully[0m
-7[0;31m[1m✗8[3C[0;31m[1mFailed to connect to database[0m
-7[0;33m[1m⚠8[3C[0;33m[1mConfiguration file is missing[0m
-7[0;36m[1mℹ8[3C[0;36m[1mApplication started on port 8080[0m
+7[32m[1m✓8[3C[32m[1mOperation completed successfully[0m
+7[31m[1m✗8[3C[31m[1mFailed to connect to database[0m
+7[33m[1m⚠8[3C[33m[1mConfiguration file is missing[0m
+7[36m[1mℹ8[3C[36m[1mApplication started on port 8080[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mCustom icons[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m🎉8[3C[0;32m[1mBuild passed[0m
-7[0;31m[1m💥8[3C[0;31m[1mBuild failed[0m
-7[0;33m[1m⚠️8[3C[0;33m[1mDeprecated API[0m
-7[0;36m[1m💡8[3C[0;36m[1mNew feature available[0m
+7[32m[1m🎉8[3C[32m[1mBuild passed[0m
+7[31m[1m💥8[3C[31m[1mBuild failed[0m
+7[33m[1m⚠️8[3C[33m[1mDeprecated API[0m
+7[36m[1m💡8[3C[36m[1mNew feature available[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mLong messages[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m✓8[3C[0;32m[1mThis is a very long success message that demonstrates how the function handles extended text content with multiple words and detailed information about the successful operation[0m
-7[0;31m[1m✗8[3C[0;31m[1mThis is a very long error message that demonstrates how the function handles extended text content with multiple words and detailed information about what went wrong[0m
-7[0;33m[1m⚠8[3C[0;33m[1mThis is a very long warning message that demonstrates how the function handles extended text content with multiple words and detailed information about potential issues[0m
-7[0;36m[1mℹ8[3C[0;36m[1mThis is a very long informational message that demonstrates how the function handles extended text content with multiple words and detailed information for the user[0m
+7[32m[1m✓8[3C[32m[1mThis is a very long success message that demonstrates how the function handles extended text content with multiple words and detailed information about the successful operation[0m
+7[31m[1m✗8[3C[31m[1mThis is a very long error message that demonstrates how the function handles extended text content with multiple words and detailed information about what went wrong[0m
+7[33m[1m⚠8[3C[33m[1mThis is a very long warning message that demonstrates how the function handles extended text content with multiple words and detailed information about potential issues[0m
+7[36m[1mℹ8[3C[36m[1mThis is a very long informational message that demonstrates how the function handles extended text content with multiple words and detailed information for the user[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mEmpty messages[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m✓8[3C[0;32m[1m[0m
-7[0;31m[1m✗8[3C[0;31m[1m[0m
-7[0;33m[1m⚠8[3C[0;33m[1m[0m
-7[0;36m[1mℹ8[3C[0;36m[1m[0m
+7[32m[1m✓8[3C[32m[1m[0m
+7[31m[1m✗8[3C[31m[1m[0m
+7[33m[1m⚠8[3C[33m[1m[0m
+7[36m[1mℹ8[3C[36m[1m[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mMessages with special characters[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m✓8[3C[0;32m[1mTest: 100% complete! All checks passed ✓[0m
-7[0;31m[1m✗8[3C[0;31m[1mError: File not found @ /var/log/app.log[0m
-7[0;33m[1m⚠8[3C[0;33m[1mWarning: Memory usage > 90% (critical threshold)[0m
-7[0;36m[1mℹ8[3C[0;36m[1mInfo: User #456 logged in from 192.168.1.1[0m
+7[32m[1m✓8[3C[32m[1mTest: 100% complete! All checks passed ✓[0m
+7[31m[1m✗8[3C[31m[1mError: File not found @ /var/log/app.log[0m
+7[33m[1m⚠8[3C[33m[1mWarning: Memory usage > 90% (critical threshold)[0m
+7[36m[1mℹ8[3C[36m[1mInfo: User #456 logged in from 192.168.1.1[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mUnicode and emoji in messages[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m✓8[3C[0;32m[1mDeployment successful 🚀[0m
-7[0;31m[1m✗8[3C[0;31m[1mConnection timeout ⏱️[0m
-7[0;33m[1m⚠8[3C[0;33m[1mSSL certificate expires soon 🔒[0m
-7[0;36m[1mℹ8[3C[0;36m[1mRunning in debug mode 🐛[0m
+7[32m[1m✓8[3C[32m[1mDeployment successful 🚀[0m
+7[31m[1m✗8[3C[31m[1mConnection timeout ⏱️[0m
+7[33m[1m⚠8[3C[33m[1mSSL certificate expires soon 🔒[0m
+7[36m[1mℹ8[3C[36m[1mRunning in debug mode 🐛[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mConsecutive messages (no spacing)[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m✓8[3C[0;32m[1mStep 1: Initialize[0m
-7[0;32m[1m✓8[3C[0;32m[1mStep 2: Configure[0m
-7[0;32m[1m✓8[3C[0;32m[1mStep 3: Deploy[0m
-7[0;31m[1m✗8[3C[0;31m[1mStep 4: Verify failed[0m
-7[0;33m[1m⚠8[3C[0;33m[1mStep 5: Rollback initiated[0m
-7[0;36m[1mℹ8[3C[0;36m[1mStep 6: Cleanup pending[0m
+7[32m[1m✓8[3C[32m[1mStep 1: Initialize[0m
+7[32m[1m✓8[3C[32m[1mStep 2: Configure[0m
+7[32m[1m✓8[3C[32m[1mStep 3: Deploy[0m
+7[31m[1m✗8[3C[31m[1mStep 4: Verify failed[0m
+7[33m[1m⚠8[3C[33m[1mStep 5: Rollback initiated[0m
+7[36m[1mℹ8[3C[36m[1mStep 6: Cleanup pending[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mAll four functions in sequence[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m✓8[3C[0;32m[1mDatabase migration completed[0m
-7[0;31m[1m✗8[3C[0;31m[1mRedis connection failed[0m
-7[0;33m[1m⚠8[3C[0;33m[1mAPI rate limit approaching[0m
-7[0;36m[1mℹ8[3C[0;36m[1mCache cleared successfully[0m
+7[32m[1m✓8[3C[32m[1mDatabase migration completed[0m
+7[31m[1m✗8[3C[31m[1mRedis connection failed[0m
+7[33m[1m⚠8[3C[33m[1mAPI rate limit approaching[0m
+7[36m[1mℹ8[3C[36m[1mCache cleared successfully[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mMixed custom icons[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m✅8[3C[0;32m[1mTests passed[0m
-7[0;31m[1m❌8[3C[0;31m[1mTests failed[0m
-7[0;33m[1m⏭️8[3C[0;33m[1mTests skipped[0m
-7[0;36m[1m▶️8[3C[0;36m[1mTests running[0m
+7[32m[1m✅8[3C[32m[1mTests passed[0m
+7[31m[1m❌8[3C[31m[1mTests failed[0m
+7[33m[1m⏭️8[3C[33m[1mTests skipped[0m
+7[36m[1m▶️8[3C[36m[1mTests running[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mEmpty custom icons[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m✓8[3C[0;32m[1mNo icon message[0m
-7[0;31m[1m✗8[3C[0;31m[1mNo icon error[0m
-7[0;33m[1m⚠8[3C[0;33m[1mNo icon warning[0m
-7[0;36m[1mℹ8[3C[0;36m[1mNo icon info[0m
+7[32m[1m✓8[3C[32m[1mNo icon message[0m
+7[31m[1m✗8[3C[31m[1mNo icon error[0m
+7[33m[1m⚠8[3C[33m[1mNo icon warning[0m
+7[36m[1mℹ8[3C[36m[1mNo icon info[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mUsing --icon flag[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m🎉8[3C[0;32m[1mBuild completed[0m
-7[0;31m[1m💥8[3C[0;31m[1mBuild failed[0m
-7[0;33m[1m⚠️8[3C[0;33m[1mDeprecated[0m
-7[0;36m[1m💡8[3C[0;36m[1mNew feature[0m
+7[32m[1m🎉8[3C[32m[1mBuild completed[0m
+7[31m[1m💥8[3C[31m[1mBuild failed[0m
+7[33m[1m⚠️8[3C[33m[1mDeprecated[0m
+7[36m[1m💡8[3C[36m[1mNew feature[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mMixing flags and positional args[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m✅8[3C[0;32m[1mPositional icon[0m
-7[0;32m[1m✅8[3C[0;32m[1mFlag icon[0m
+7[32m[1m✅8[3C[32m[1mPositional icon[0m
+7[32m[1m✅8[3C[32m[1mFlag icon[0m
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mCombining -n with --icon[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m🚀8[3C[0;32m[1mNo newline[0m <- same line
-7[0;31m[1m🔥8[3C[0;31m[1mCritical error[0m <- same line
-7[0;33m[1m⚡8[3C[0;33m[1mWarning message[0m <- same line
+7[32m[1m🚀8[3C[32m[1mNo newline[0m <- same line
+7[31m[1m🔥8[3C[31m[1mCritical error[0m <- same line
+7[33m[1m⚡8[3C[33m[1mWarning message[0m <- same line
 
 
 [0;31m[1m╔════════════════════════════════════════════════════════════════════════════════╗[0m
 [0;31m[1m║[0m [0;33m[1mFlag takes precedence over positional[0m
 [0;31m[1m╚════════════════════════════════════════════════════════════════════════════════╝[0m
 
-7[0;32m[1m✅8[3C[0;32m[1mMessage[0m
-7[0;31m[1m✅8[3C[0;31m[1mMessage[0m
+7[32m[1m✅8[3C[32m[1mMessage[0m
+7[31m[1m✅8[3C[31m[1mMessage[0m

@@ -14,7 +14,7 @@ print_header() {
     local center=false
     local closed=false
     local fit=false
-    local border_prefix="${BOLD}${CY}"
+    local border_prefix="${CY}"
     local cell_prefix="${BOLD}${WH}"
 
     # Parse arguments

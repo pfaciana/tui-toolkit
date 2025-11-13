@@ -10,15 +10,15 @@ _ANSI_LOADED=1
 # ============================================================================
 
 # Color codes (foreground)
-readonly BK=$'\033[0;30m'
-readonly RD=$'\033[0;31m'
-readonly GN=$'\033[0;32m'
-readonly YL=$'\033[0;33m'
-readonly BL=$'\033[0;34m'
-readonly MG=$'\033[0;35m'
-readonly CY=$'\033[0;36m'
-readonly WH=$'\033[0;37m'
-readonly GR=$'\033[0;90m'
+readonly BK=$'\033[30m'
+readonly RD=$'\033[31m'
+readonly GN=$'\033[32m'
+readonly YL=$'\033[33m'
+readonly BL=$'\033[34m'
+readonly MG=$'\033[35m'
+readonly CY=$'\033[36m'
+readonly WH=$'\033[37m'
+readonly GR=$'\033[90m'
 
 # Bright colors (foreground)
 readonly BRT_BK=$'\033[90m'
@@ -69,6 +69,27 @@ readonly NO_UNDERLINE=$'\033[24m'  # Not underlined
 readonly NO_BLINK=$'\033[25m'  # Not blinking
 readonly NO_SWAP=$'\033[27m'  # Not reversed
 readonly NO_STRIKE=$'\033[29m'  # Not strikethrough
+
+# Bold color shorthands (foreground)
+readonly BLD_BK="${BOLD}${BK}"
+readonly BLD_RD="${BOLD}${RD}"
+readonly BLD_GN="${BOLD}${GN}"
+readonly BLD_YL="${BOLD}${YL}"
+readonly BLD_BL="${BOLD}${BL}"
+readonly BLD_MG="${BOLD}${MG}"
+readonly BLD_CY="${BOLD}${CY}"
+readonly BLD_WH="${BOLD}${WH}"
+readonly BLD_GR="${BOLD}${GR}"
+
+# Bold bright color shorthands (foreground)
+readonly BLD_BRT_BK="${BOLD}${BRT_BK}"
+readonly BLD_BRT_RD="${BOLD}${BRT_RD}"
+readonly BLD_BRT_GN="${BOLD}${BRT_GN}"
+readonly BLD_BRT_YL="${BOLD}${BRT_YL}"
+readonly BLD_BRT_BL="${BOLD}${BRT_BL}"
+readonly BLD_BRT_MG="${BOLD}${BRT_MG}"
+readonly BLD_BRT_CY="${BOLD}${BRT_CY}"
+readonly BLD_BRT_WH="${BOLD}${BRT_WH}"
 
 
 # ============================================================================
